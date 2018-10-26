@@ -1,19 +1,21 @@
 package roomservice.entity;
 
+import java.util.UUID;
+
 public class Entity {
 
-    private long id;
+    private String id;
     private String name;
 
-    public Entity(){}
+    public Entity(){this.id = UUID.randomUUID().toString();}
 
     //TODO use lombok for plain java
-    public Entity(long id, String name) {
-        this.id = id;
+    public Entity(String name) {
+        this();
         this.name = name;
     }
 
-    public long getId(){
+    public String getId(){
         return id;
     }
 

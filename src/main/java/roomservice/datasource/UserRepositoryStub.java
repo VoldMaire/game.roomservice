@@ -11,7 +11,7 @@ public class UserRepositoryStub implements Repository<User>{
     static List<User> users = Collections.synchronizedList(new ArrayList<>());
 
     @Override
-    public User getById(int id) {
+    public User getById(String id) {
         synchronized (users) {
             return users.stream()
                           .filter(r -> r.getId() == id)
@@ -47,7 +47,7 @@ public class UserRepositoryStub implements Repository<User>{
 
     @Override
     public User update(User entity) {
-        delete(getById((int)entity.getId()));
+        delete(getById(entity.getId()));
         put(entity);
         return entity;
     }

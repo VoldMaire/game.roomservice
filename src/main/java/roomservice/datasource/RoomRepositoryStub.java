@@ -11,7 +11,7 @@ public class RoomRepositoryStub implements Repository<Room> {
     static List<Room> rooms = Collections.synchronizedList(new ArrayList<>());
 
     @Override
-    public Room getById(int id) {
+    public Room getById(String id) {
         Room result = null;
         synchronized (rooms) {
             result = rooms.stream()
@@ -49,7 +49,7 @@ public class RoomRepositoryStub implements Repository<Room> {
 
     @Override
     public Room update(Room entity) {
-        delete(getById((int)entity.getId()));
+        delete(getById(entity.getId()));
         put(entity);
         return entity;
     }

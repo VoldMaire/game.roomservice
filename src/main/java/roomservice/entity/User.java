@@ -1,9 +1,16 @@
 package roomservice.entity;
 
-public class User extends Entity{
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-    public User(String name){
-        super(name);
-    }
+@Entity
+public class User {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String name;
+
+    public User(){}
 
 }

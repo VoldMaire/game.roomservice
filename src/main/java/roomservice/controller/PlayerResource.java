@@ -1,5 +1,37 @@
 package roomservice.controller;
 
-public class UserController {
+import java.net.URI;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import roomservice.datasource.PlayerRepository;
+import roomservice.entity.Player;
+
+@RestController
+public class PlayerResource {
+
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    @GetMapping("/players")
+    public List<Player> retrieveAllStudents() {
+        return playerRepository.findAll();
+    }
+
+    @PostMapping("/players")
+    public ResponseEntity<Object> createStudent(@RequestBody Player player) {
+        Player savedPlayer = playerRepository.save(player);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                                                  .buildAndExpand(savedPlayer.getId()).toUri();
+
+        return ResponseEntity.created(location).build();
+
+    }
 }

@@ -12,6 +12,7 @@ public class Room {
     private Long id;
 
     private int gameId;
+
     private int countUser;
 
     public Room(){

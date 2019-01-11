@@ -3,6 +3,8 @@ language: java
 jdk:
 - oraclejdk8
 
+before_script:
+- chmod +x gradlew
+
 script:
-  - git update-index --chmod=+x gradlew
-  - ./gradlew build
+- ./gradlew build

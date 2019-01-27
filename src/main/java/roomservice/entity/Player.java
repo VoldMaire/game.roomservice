@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -36,7 +35,7 @@ public class Player {
 
     @NotBlank
     @Size(max = 15)
-    private String userName;
+    private String username;
 
     @NaturalId
     @NotBlank
@@ -58,7 +57,7 @@ public class Player {
 
     public Player(String name, String username, String email, String password) {
         this.name = name;
-        this.userName = username;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -69,12 +68,12 @@ public class Player {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getName(){ return name; }
@@ -89,6 +88,14 @@ public class Player {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Set<Role> getRoles() {

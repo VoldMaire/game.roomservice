@@ -16,28 +16,28 @@ import roomservice.entity.Player;
 @RestController
 public class PlayerResource {
 
-    @Autowired
-    private PlayerRepository playerRepository;
-
-    @GetMapping("/player")
-    public Player retrievePlayer(Long id) {
-        return playerRepository.getOne(id);
-    }
-
-    @GetMapping("/players")
-    public List<Player> retrieveAllPlayers() {
-        return playerRepository.findAll();
-    }
-
-    @PostMapping("/player")
-    public ResponseEntity<Object> createStudent(@RequestBody Player player) {
-        Player savedPlayer = playerRepository.save(player);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                                                  .buildAndExpand(savedPlayer.getId()).toUri();
-
-        return ResponseEntity.created(location).build();
-    }
+//    @Autowired
+//    private PlayerRepository playerRepository;
+//
+//    @GetMapping("/player")
+//    public Player retrievePlayer(Long id) {
+//        return playerRepository.getOne(id);
+//    }
+//
+//    @GetMapping("/players")
+//    public List<Player> retrieveAllPlayers() {
+//        return playerRepository.findAll();
+//    }
+//
+//    @PostMapping("/player")
+//    public ResponseEntity<Object> createStudent(@RequestBody Player player) {
+//        Player savedPlayer = playerRepository.save(player);
+//
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//                                                  .buildAndExpand(savedPlayer.getId()).toUri();
+//
+//        return ResponseEntity.created(location).build();
+//    }
 
 
 }

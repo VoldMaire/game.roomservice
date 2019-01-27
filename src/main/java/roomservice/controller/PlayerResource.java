@@ -19,12 +19,17 @@ public class PlayerResource {
     @Autowired
     private PlayerRepository playerRepository;
 
+    @GetMapping("/player")
+    public Player retrievePlayer(Long id) {
+        return playerRepository.getOne(id);
+    }
+
     @GetMapping("/players")
-    public List<Player> retrieveAllStudents() {
+    public List<Player> retrieveAllPlayers() {
         return playerRepository.findAll();
     }
 
-    @PostMapping("/players")
+    @PostMapping("/player")
     public ResponseEntity<Object> createStudent(@RequestBody Player player) {
         Player savedPlayer = playerRepository.save(player);
 
@@ -32,6 +37,7 @@ public class PlayerResource {
                                                   .buildAndExpand(savedPlayer.getId()).toUri();
 
         return ResponseEntity.created(location).build();
-
     }
+
+
 }

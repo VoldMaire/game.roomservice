@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.9.RELEASE'
+        springBootVersion = '2.1.1.RELEASE'
     }
     repositories {
         maven { url "http://repo.spring.io/libs-release" }
@@ -15,6 +15,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 jar {
     baseName = 'gs-rest-service'
@@ -27,10 +28,25 @@ repositories {
     maven { url "http://repo.spring.io/libs-release" }
 }
 
+
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile("junit:junit")
-}
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    implementation 'io.jsonwebtoken:jjwt:0.9.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    implementation group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+    implementation group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    compileOnly 'org.projectlombok:lombok'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.jayway.restassured:rest-assured:2.8.0'
+    testImplementation 'junit:junit'
 }
